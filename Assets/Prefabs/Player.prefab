@@ -112,7 +112,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1.5
-  sprintSpeed: 2
+  sprintSpeed: 2.5
+  bulletSpeed: 1000
   bulletPrefab: {fileID: 4967523400021370568, guid: 9995e6f8f0ff54e7d80c7082ec54633c, type: 3}
 --- !u!114 &4146202418231989614
 MonoBehaviour:

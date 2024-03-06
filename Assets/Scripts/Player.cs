@@ -10,6 +10,7 @@ using UnityEngine.InputSystem;
 public class NewBehaviourScript : MonoBehaviour {
     public float moveSpeed;
     public float sprintSpeed;
+    public float bulletSpeed;
     public GameObject bulletPrefab;
 
     private PlayerControls m_playerControls;
@@ -48,12 +49,19 @@ public class NewBehaviourScript : MonoBehaviour {
                 m_gunTip.localPosition = new Vector2(1, 1);
             } else if (m_pointDirection.y == -1) {
                 m_gunTip.localPosition = new Vector2(0, 0);
+                m_gunTip.Rotate(new Vector3(0, 0, 90));
             } else if (m_pointDirection.y == 1) {
                 m_gunTip.localPosition = new Vector2(0, 2);
+                m_gunTip.Rotate(new Vector3(0, 0, -90));
             }
         }
     }
     private void OnSprint(InputValue value) {
         m_sprinting = value.isPressed;
+    }
+    private void OnShoot() {
+        var b = GameObject.Instantiate(bulletPrefab, m_gunTip.position, m_gunTip.rotation);
+        b.GetComponent<Rigidbody2D>().AddForce(m_pointDirection * bulletSpeed);
+        GameObject.Destroy(b, 1.0f);
     }
 }
