@@ -7,6 +7,7 @@ public class RatAI : MonoBehaviour
 {
     public int m_max_health = 3;
     public int m_current_health;
+    public Transform m_Player;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +20,16 @@ public class RatAI : MonoBehaviour
         if(m_current_health == 0)
         {
             Destroy(gameObject);
+        }
+        if (m_Player != null)
+        {
+            Vector3 direction = m_Player.transform.position - transform.position;
+
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+            Quaternion rotation = Quaternion.Euler(0f, 0f, angle);
+
+            transform.rotation = rotation;
         }
 
     }
