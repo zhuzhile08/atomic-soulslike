@@ -20,27 +20,7 @@ public class RatAI : MonoBehaviour
         {
             Destroy(gameObject);
         }
-         private Vector2 mousePosition;
 
-    void Update()
-    {
-        mousePosition = Mouse.current.position.ReadValue();
-
-        // Convert mouse position to world space
-        Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        cursorPosition.z = 0f; // Ensure the z-coordinate is set to 0 (assuming your game is in 2D)
-
-        // Calculate the direction from the object to the cursor position
-        Vector3 direction = cursorPosition - transform.position;
-
-        // Calculate the rotation angle in radians
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-        // Create a rotation to face towards the cursor
-        Quaternion rotation = Quaternion.Euler(0f, 0f, angle);
-
-        // Apply the rotation to the object
-        transform.rotation = rotation;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
